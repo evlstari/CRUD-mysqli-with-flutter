@@ -1,0 +1,88 @@
+
+void main() {
+  int maxSize = 100;
+  HighArray arr;
+  arr = HighArray(0, List<int>.filled(maxSize, 0));
+
+  arr.insert(70);
+  arr.insert(80);
+  arr.insert(75);
+  arr.insert(55);
+  arr.insert(85);
+  arr.insert(25);
+  arr.insert(30);
+  arr.insert(10);
+  arr.insert(90);
+  arr.insert(40);
+  arr.insert(13);
+
+  arr.display();
+
+  int key = 25;
+  if (arr.findKey(key)) {
+    print(" $key ditemukan ");
+  } else {
+    print("$key tidak ditemukan");
+  }
+}
+
+class HighArray {
+  int? nElement;
+  List<int> arr = [];
+
+  HighArray(int nElement, List<int> arr) {
+    this.nElement = nElement;
+    this.arr = arr;
+  }
+
+  void insert(int value) {
+    arr[nElement!] = value;
+    nElement = nElement! + 1;
+  }
+
+  bool findKey(int key) {
+    int i;
+    for (i = 0; i < nElement!; i++) {
+      if (arr[i] == key) {
+        break;
+      }
+      return true;
+    }
+    if (i == nElement) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool delete(int value) {
+    int i;
+    for (i = 0; i < nElement!; i++) {
+      if (value == arr[i]) {
+        break;
+      }
+    }
+    if (i == nElement) {
+      return false;
+    } else {
+      for (int j = i; j < nElement!; j++) {
+        arr[j] = arr[j + 1];
+      }
+      nElement! - 1;
+      return true;
+    }
+  }
+
+  void display() {
+    for (int i = 0; i < nElement!; i++) {
+      print("${arr[i]} + ");
+    }
+    arr.sort(
+      (a, b) => a.compareTo(b),
+    );
+
+    print("Panjang Array = ${arr.length}");
+    print("Semua data Array = $arr");
+    print("**********");
+  }
+}
